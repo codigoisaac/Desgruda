@@ -91,7 +91,7 @@ export function activate(context: vscode.ExtensionContext) {
       });
 
       vscode.window.showInformationMessage(
-        "Body Breath: Inserted blank lines between sibling JSX/HTML elements."
+        "Body Breath: 🍃 Inserted blank lines between sibling elements."
       );
     }
   );
