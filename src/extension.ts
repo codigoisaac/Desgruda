@@ -28,8 +28,12 @@ export function activate(context: vscode.ExtensionContext) {
         editBuilder.replace(fullRange, formatted);
       });
 
+      await vscode.workspace.applyEdit(new vscode.WorkspaceEdit());
+
+      await vscode.commands.executeCommand("editor.action.formatDocument");
+
       vscode.window.showInformationMessage(
-        "Added blank lines between sibling elements!"
+        "Body Breath: Added blank lines between sibling elements!"
       );
     }
   );
