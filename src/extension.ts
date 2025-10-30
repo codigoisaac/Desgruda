@@ -1,4 +1,7 @@
 import * as vscode from "vscode";
+import { parse } from "@babel/parser";
+import traverse from "@babel/traverse";
+import MagicString from "magic-string";
 
 export function activate(context: vscode.ExtensionContext) {
   const disposable = vscode.commands.registerCommand(
@@ -11,29 +14,84 @@ export function activate(context: vscode.ExtensionContext) {
       }
 
       const document = editor.document;
-      const text = document.getText();
+      const code = document.getText();
+      const magic = new MagicString(code);
 
-      // Regex: find closing tag or self-closing tag followed by another tag with no blank line
-      const formatted = text.replace(
-        /(>)(\s*\r?\n\s*)(<)/g,
-        (_match, p1, _p2, p3) => `${p1}\n\n${p3}`
-      );
+      let ast;
+      try {
+        ast = parse(code, {
+          sourceType: "module",
+          plugins: ["typescript", "jsx"],
+          tokens: true,
+        });
+      } catch (err) {
+        vscode.window.showErrorMessage("Failed to parse document as JS/TSX.");
+        console.error(err);
+        return;
+      }
+
+      const isElementNode = (node: any) =>
+        node && (node.type === "JSXElement" || node.type === "JSXFragment");
+
+      traverse(ast as any, {
+        JSXElement(path: any) {
+          handleChildrenArray(path.node.children);
+        },
+        JSXFragment(path: any) {
+          handleChildrenArray(path.node.children);
+        },
+      });
+
+      function handleChildrenArray(children: any[]) {
+        if (!children || children.length < 2) return;
+
+        const elementItems: { idx: number; node: any }[] = [];
+        for (let i = 0; i < children.length; i++) {
+          const ch = children[i];
+          if (isElementNode(ch)) {
+            elementItems.push({ idx: i, node: ch });
+          }
+        }
+
+        for (let i = 0; i < elementItems.length - 1; i++) {
+          const a = elementItems[i].node;
+          const b = elementItems[i + 1].node;
+
+          const between = code.slice(a.end, b.start);
+
+          // If already two or more newlines, skip
+          if (/\n\s*\n/.test(between)) continue;
+
+          // Determine the indentation of the next sibling
+          const bLineStart = code.lastIndexOf("\n", b.start) + 1;
+          const bIndentMatch = /^(\s*)/.exec(code.slice(bLineStart, b.start));
+          const bIndent = bIndentMatch ? bIndentMatch[1] : "";
+
+          // Insert a blank line with the same indentation as the next element
+          magic.appendLeft(b.start, "\n" + bIndent);
+        }
+      }
+
+      const result = magic.toString();
+
+      if (result === code) {
+        vscode.window.showInformationMessage(
+          "No sibling JSX elements needed spacing."
+        );
+        return;
+      }
 
       const fullRange = new vscode.Range(
         document.positionAt(0),
-        document.positionAt(text.length)
+        document.positionAt(code.length)
       );
 
       await editor.edit((editBuilder) => {
-        editBuilder.replace(fullRange, formatted);
+        editBuilder.replace(fullRange, result);
       });
 
-      await vscode.workspace.applyEdit(new vscode.WorkspaceEdit());
-
-      await vscode.commands.executeCommand("editor.action.formatDocument");
-
       vscode.window.showInformationMessage(
-        "Body Breath: Added blank lines between sibling elements!"
+        "Body Breath: Inserted blank lines between sibling JSX/HTML elements."
       );
     }
   );
