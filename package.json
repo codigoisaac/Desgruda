@@ -16,8 +16,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "body-breath.helloBody",
-        "title": "Hello Body"
+        "command": "body-breath.bodyBreath",
+        "title": "Body Breath"
       }
     ]
   },
