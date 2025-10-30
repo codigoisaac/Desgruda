@@ -3,6 +3,8 @@
   "displayName": "Body Breath",
   "description": "Improve readability by inserting consistent whitespace between sibling JSX/HTML tags.",
   "version": "0.0.1",
+  "publisher": "isaacmuniz.pro",
+  "repository": "https://github.com/codigoisaac/body-breath",
   "engines": {
     "vscode": "^1.105.0"
   },
