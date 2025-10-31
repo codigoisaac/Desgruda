@@ -4,12 +4,28 @@ import traverse from "@babel/traverse";
 import MagicString from "magic-string";
 
 export function activate(context: vscode.ExtensionContext) {
+  function showVscodeMessage(type: "info" | "error", message: string) {
+    const messageIntro = `Body Breath:`;
+    const messageBody = `${messageIntro} ${message}`;
+
+    switch (type) {
+      case "info":
+        vscode.window.showInformationMessage(messageBody);
+        break;
+
+      case "error":
+        vscode.window.showErrorMessage(messageBody);
+        break;
+    }
+  }
+
   const disposable = vscode.commands.registerCommand(
     "body-breath.bodyBreath",
     async () => {
       const editor = vscode.window.activeTextEditor;
+
       if (!editor) {
-        vscode.window.showErrorMessage("No active editor found.");
+        showVscodeMessage("error", "No active editor found.");
         return;
       }
 
@@ -18,6 +34,7 @@ export function activate(context: vscode.ExtensionContext) {
       const magic = new MagicString(code);
 
       let ast;
+
       try {
         ast = parse(code, {
           sourceType: "module",
@@ -25,8 +42,10 @@ export function activate(context: vscode.ExtensionContext) {
           tokens: true,
         });
       } catch (err) {
-        vscode.window.showErrorMessage("Failed to parse document as JS/TSX.");
+        showVscodeMessage("error", "Failed to parse document as JS/TSX.");
+
         console.error(err);
+
         return;
       }
 
@@ -46,6 +65,7 @@ export function activate(context: vscode.ExtensionContext) {
         if (!children || children.length < 2) return;
 
         const elementItems: { idx: number; node: any }[] = [];
+
         for (let i = 0; i < children.length; i++) {
           const ch = children[i];
           if (isElementNode(ch)) {
@@ -75,9 +95,7 @@ export function activate(context: vscode.ExtensionContext) {
       const result = magic.toString();
 
       if (result === code) {
-        vscode.window.showInformationMessage(
-          "No sibling JSX elements needed spacing."
-        );
+        showVscodeMessage("info", "No sibling JSX elements needed spacing.");
         return;
       }
 
@@ -90,8 +108,9 @@ export function activate(context: vscode.ExtensionContext) {
         editBuilder.replace(fullRange, result);
       });
 
-      vscode.window.showInformationMessage(
-        "Body Breath: 🍃 Inserted blank lines between sibling elements."
+      showVscodeMessage(
+        "info",
+        "🍃 Inserted blank lines between sibling elements."
       );
     }
   );
