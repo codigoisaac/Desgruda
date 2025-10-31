@@ -19,6 +19,14 @@
         "command": "body-breath.bodyBreath",
         "title": "Body Breath"
       }
+    ],
+    "keybindings": [
+      {
+        "command": "body-breath.bodyBreath",
+        "key": "ctrl+b b",
+        "mac": "cmd+b b",
+        "when": "editorTextFocus"
+      }
     ]
   },
   "scripts": {
