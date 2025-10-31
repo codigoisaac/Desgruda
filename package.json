@@ -1,8 +1,9 @@
 {
   "name": "body-breath",
   "displayName": "Body Breath",
-  "description": "Improve readability by inserting consistent whitespace between sibling JSX/HTML tags.",
-  "version": "0.0.1",
+  "description": "Improve readability by automatically inserting blank lines between sibling HTML-like elements in your JSX/TSX files.",
+  "icon": "images/icon.png",
+  "version": "1.0.0",
   "publisher": "isaacmuniz.pro",
   "repository": "https://github.com/codigoisaac/body-breath",
   "engines": {
