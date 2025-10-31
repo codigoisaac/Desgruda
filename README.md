@@ -1,71 +1,96 @@
-# body-breath README
+# Body Breath 🍃
 
-This is the README for your extension "body-breath". After writing up a brief description, we recommend including the following sections.
+Improve readability by automatically inserting blank lines between sibling HTML-like elements in your JSX/TSX files.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+Body Breath analyzes your JSX/TSX code and intelligently adds empty lines between sibling elements to make your component structure more readable and scannable.
 
-For example if there is an image subfolder under your extension project workspace:
+### Before
 
-\!\[feature X\]\(images/feature-x.png\)
+```jsx
+<div>
+  <Header />
+  <main>
+    <Article />
+    <Sidebar />
+    <Comments />
+  </main>
+  <Footer />
+</div>
+```
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+### After
+
+```jsx
+<div>
+  <Header />
+
+  <main>
+    <Article />
+
+    <Sidebar />
+
+    <Comments />
+  </main>
+
+  <Footer />
+</div>
+```
+
+## Usage
+
+Body Breath can be triggered in two ways:
+
+1. **Keyboard Shortcut**: Press `Ctrl+B B` (Windows/Linux) or `Cmd+B B` (Mac) while editing a file
+2. **Command Palette**: Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`) and search for "Body Breath"
+
+The extension will:
+
+- Parse your JSX/TSX code
+- Identify sibling elements that need spacing
+- Insert blank lines with proper indentation
+- Preserve existing spacing if elements already have blank lines between them
+
+## Supported Languages
+
+- JavaScript (`.js`, `.jsx`)
+- TypeScript (`.ts`, `.tsx`)
+- React components
+- JSX Fragments
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+No additional dependencies required. Body Breath works out of the box with your existing VS Code installation.
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+This extension does not currently add any VS Code settings. It works automatically when triggered.
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+- The extension currently processes the entire file. For very large files, this may take a moment.
+- Only formats JSX/TSX elements. Standard HTML files are not yet supported.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
-
 ### 1.0.0
 
-Initial release of ...
+Initial release of Body Breath:
 
-### 1.0.1
+- Automatic blank line insertion between sibling JSX elements
+- Smart indentation matching
+- Support for JSX and JSX Fragments
+- Keyboard shortcut: `Ctrl+B B` / `Cmd+B B`
 
-Fixed issue #.
+## Contributing
 
-### 1.1.0
+Found a bug or have a feature request? Please open an issue on the [GitHub repository](https://github.com/codigoisaac/body-breath).
 
-Added features X, Y, and Z.
+## License
+
+This extension is licensed under the MIT License.
 
 ---
 
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+**Enjoy using Body Breath!** 🍃
