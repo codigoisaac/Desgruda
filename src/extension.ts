@@ -33,10 +33,10 @@ export function activate(context: vscode.ExtensionContext) {
       const code = document.getText();
       const magic = new MagicString(code);
 
-      let ast;
+      let abstractSyntaxTree;
 
       try {
-        ast = parse(code, {
+        abstractSyntaxTree = parse(code, {
           sourceType: "module",
           plugins: ["typescript", "jsx"],
           tokens: true,
@@ -49,10 +49,13 @@ export function activate(context: vscode.ExtensionContext) {
         return;
       }
 
-      const isElementNode = (node: any) =>
-        node && (node.type === "JSXElement" || node.type === "JSXFragment");
+      function isElementNode(node: any) {
+        return (
+          node && (node.type === "JSXElement" || node.type === "JSXFragment")
+        );
+      }
 
-      traverse(ast as any, {
+      traverse(abstractSyntaxTree as any, {
         JSXElement(path: any) {
           handleChildrenArray(path.node.children);
         },
@@ -68,6 +71,7 @@ export function activate(context: vscode.ExtensionContext) {
 
         for (let i = 0; i < children.length; i++) {
           const ch = children[i];
+
           if (isElementNode(ch)) {
             elementItems.push({ idx: i, node: ch });
           }
