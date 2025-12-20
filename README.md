@@ -1,10 +1,8 @@
-# Body Breath 🍃
+# Desgruda 🍃
 
-Improve readability by automatically inserting blank lines between sibling HTML-like elements in your JSX/TSX files.
+You'll never have to work with all that "stuck together" code again.
 
-## Features
-
-Body Breath analyzes your JSX/TSX code and intelligently adds empty lines between sibling elements to make your component structure more readable and scannable.
+This extension helps you improve code readability by automatically separating sibling HTML-like elements with a blank line.
 
 ### Before
 
@@ -40,10 +38,10 @@ Body Breath analyzes your JSX/TSX code and intelligently adds empty lines betwee
 
 ## Usage
 
-Body Breath can be triggered in two ways:
+Desgruda can be triggered in two ways:
 
 1. **Keyboard Shortcut**: Press `Ctrl+B B` (Windows/Linux) or `Cmd+B B` (Mac) while editing a file
-2. **Command Palette**: Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`) and search for "Body Breath"
+2. **Command Palette**: Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`) and search for "Desgruda"
 
 The extension will:
 
@@ -61,7 +59,7 @@ The extension will:
 
 ## Requirements
 
-No additional dependencies required. Body Breath works out of the box with your existing VS Code installation.
+No additional dependencies required. Desgruda works out of the box with your existing VS Code installation.
 
 ## Extension Settings
 
@@ -76,7 +74,7 @@ This extension does not currently add any VS Code settings. It works automatical
 
 ### 1.0.0
 
-Initial release of Body Breath:
+Initial release of Desgruda:
 
 - Automatic blank line insertion between sibling JSX elements
 - Smart indentation matching
@@ -85,7 +83,7 @@ Initial release of Body Breath:
 
 ## Contributing
 
-Found a bug or have a feature request? Please open an issue on the [GitHub repository](https://github.com/codigoisaac/body-breath).
+Found a bug or have a feature request? Please open an issue on the [GitHub repository](https://github.com/codigoisaac/Desgruda).
 
 ## License
 
@@ -93,4 +91,4 @@ This extension is licensed under the MIT License.
 
 ---
 
-**Enjoy using Body Breath!** 🍃
+**Let your code breath!** 🍃

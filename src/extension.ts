@@ -5,7 +5,7 @@ import MagicString from "magic-string";
 
 export function activate(context: vscode.ExtensionContext) {
   function showVscodeMessage(type: "info" | "error", message: string) {
-    const messageIntro = `Body Breath:`;
+    const messageIntro = `Desgruda:`;
     const messageBody = `${messageIntro} ${message}`;
 
     switch (type) {
@@ -20,7 +20,7 @@ export function activate(context: vscode.ExtensionContext) {
   }
 
   const disposable = vscode.commands.registerCommand(
-    "body-breath.bodyBreath",
+    "desgruda.desgruda",
     async () => {
       const editor = vscode.window.activeTextEditor;
 
@@ -65,7 +65,9 @@ export function activate(context: vscode.ExtensionContext) {
       });
 
       function handleChildrenArray(children: any[]) {
-        if (!children || children.length < 2) return;
+        if (!children || children.length < 2) {
+          return;
+        }
 
         const elementItems: { idx: number; node: any }[] = [];
 
@@ -84,7 +86,9 @@ export function activate(context: vscode.ExtensionContext) {
           const between = code.slice(a.end, b.start);
 
           // If already two or more newlines, skip
-          if (/\n\s*\n/.test(between)) continue;
+          if (/\n\s*\n/.test(between)) {
+            continue;
+          }
 
           // Determine the indentation of the next sibling
           const bLineStart = code.lastIndexOf("\n", b.start) + 1;

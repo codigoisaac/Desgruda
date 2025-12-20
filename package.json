@@ -1,11 +1,11 @@
 {
-  "name": "body-breath",
-  "displayName": "Body Breath",
-  "description": "Improve readability by automatically inserting blank lines between sibling HTML-like elements in your JSX/TSX files.",
+  "name": "desgruda",
+  "displayName": "Desgruda - Separate Sibling Elements in HTML/JSX/TSX code",
+  "description": "Improve code readability by automatically separating sibling HTML-like elements with a blank line.",
   "icon": "images/icon.png",
   "version": "1.0.0",
   "publisher": "isaacmuniz.pro",
-  "repository": "https://github.com/codigoisaac/body-breath",
+  "repository": "https://github.com/codigoisaac/Desgruda",
   "engines": {
     "vscode": "^1.105.0"
   },
@@ -17,13 +17,13 @@
   "contributes": {
     "commands": [
       {
-        "command": "body-breath.bodyBreath",
-        "title": "Body Breath"
+        "command": "desgruda.desgruda",
+        "title": "Desgruda"
       }
     ],
     "keybindings": [
       {
-        "command": "body-breath.bodyBreath",
+        "command": "desgruda.desgruda",
         "key": "ctrl+b b",
         "mac": "cmd+b b",
         "when": "editorTextFocus"
