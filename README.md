@@ -55,28 +55,10 @@ The extension will:
 - .tsx
 - .jsx
 
-## Requirements
-
-No additional dependencies required. Desgruda works out of the box with your existing VS Code installation.
-
-## Extension Settings
-
-This extension does not currently add any VS Code settings. It works automatically when triggered.
-
 ## Known Issues
 
 - The extension currently processes the entire file. For very large files, this may take a moment.
 - Only formats JSX/TSX elements. Standard HTML files are not yet supported.
-
-## Release Notes
-
-### 1.0.0
-
-Initial release of Desgruda:
-
-- Automatic blank line insertion between sibling JSX/TSX elements
-- Smart indentation matching
-- Keyboard shortcut: `Ctrl+D G` / `Cmd+D G`
 
 ## Contributing
 
