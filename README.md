@@ -40,7 +40,7 @@ This extension helps you improve code readability by automatically separating si
 
 Desgruda can be triggered in two ways:
 
-1. **Keyboard Shortcut**: Press `Ctrl+B B` (Windows/Linux) or `Cmd+B B` (Mac) while editing a file
+1. **Keyboard Shortcut**: Press `Ctrl+D G` (Windows/Linux) or `Cmd+D G` (Mac) while editing a file
 2. **Command Palette**: Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`) and search for "Desgruda"
 
 The extension will:
@@ -50,12 +50,10 @@ The extension will:
 - Insert blank lines with proper indentation
 - Preserve existing spacing if elements already have blank lines between them
 
-## Supported Languages
+## Supported Files
 
-- JavaScript (`.js`, `.jsx`)
-- TypeScript (`.ts`, `.tsx`)
-- React components
-- JSX Fragments
+- .tsx
+- .jsx
 
 ## Requirements
 
@@ -76,10 +74,9 @@ This extension does not currently add any VS Code settings. It works automatical
 
 Initial release of Desgruda:
 
-- Automatic blank line insertion between sibling JSX elements
+- Automatic blank line insertion between sibling JSX/TSX elements
 - Smart indentation matching
-- Support for JSX and JSX Fragments
-- Keyboard shortcut: `Ctrl+B B` / `Cmd+B B`
+- Keyboard shortcut: `Ctrl+D G` / `Cmd+D G`
 
 ## Contributing
 
@@ -88,7 +85,3 @@ Found a bug or have a feature request? Please open an issue on the [GitHub repos
 ## License
 
 This extension is licensed under the MIT License.
-
----
-
-**Let your code breath!** 🍃
