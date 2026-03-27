@@ -103,24 +103,18 @@ export function activate(context: vscode.ExtensionContext) {
       const result = magic.toString();
 
       if (result === code) {
-        showVscodeMessage("info", "No sibling JSX elements needed spacing.");
         return;
       }
 
       const fullRange = new vscode.Range(
         document.positionAt(0),
-        document.positionAt(code.length)
+        document.positionAt(code.length),
       );
 
       await editor.edit((editBuilder) => {
         editBuilder.replace(fullRange, result);
       });
-
-      showVscodeMessage(
-        "info",
-        "🍃 Inserted blank lines between sibling elements."
-      );
-    }
+    },
   );
 
   context.subscriptions.push(disposable);
