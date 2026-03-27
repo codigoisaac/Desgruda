@@ -40,7 +40,7 @@ This extension helps you improve code readability by automatically separating si
 
 Desgruda can be triggered in two ways:
 
-1. **Keyboard Shortcut**: Press `Ctrl+D G` (Windows/Linux) or `Cmd+D G` (Mac) while editing a file
+1. **Keyboard Shortcut**: Press `Ctrl+K Space` (Windows/Linux) or `Cmd+K Space` (Mac) while editing a file
 2. **Command Palette**: Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`) and search for "Desgruda"
 
 The extension will:
