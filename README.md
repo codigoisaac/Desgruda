@@ -1,69 +1,99 @@
-# Code Breathe: Sibling Separator 🍃
+# Code Breathe: Sibling Separator
 
-You'll never have to work with all that "stuck together" code again.
+**Give your JSX/TSX elements room to breathe.**
 
-This extension helps you improve code readability by automatically separating sibling HTML-like elements with a blank line.
+Code Breathe automatically inserts blank lines between sibling JSX and TSX elements, making your component trees instantly more readable, without touching anything else in your file.
 
-### Before
+---
 
-```jsx
-<div>
-  <Header />
-  <main>
-    <Article />
-    <Sidebar />
-    <Comments />
-  </main>
-  <Footer />
-</div>
+## Before & After
+
+**Before**
+
+```tsx
+export default function CheckoutPage({ cart, user }: Props) {
+  return (
+    <main className="max-w-2xl mx-auto py-10">
+      <OrderSummary items={cart.items} total={cart.total} />
+      <ShippingForm defaultAddress={user.address} />
+      <PaymentForm savedCards={user.savedCards} />
+      <ConfirmButton disabled={cart.items.length === 0} />
+    </main>
+  );
+}
 ```
 
-### After
+**After**
 
-```jsx
-<div>
-  <Header />
+```tsx
+export default function CheckoutPage({ cart, user }: Props) {
+  return (
+    <main className="max-w-2xl mx-auto py-10">
+      <OrderSummary items={cart.items} total={cart.total} />
 
-  <main>
-    <Article />
+      <ShippingForm defaultAddress={user.address} />
 
-    <Sidebar />
+      <PaymentForm savedCards={user.savedCards} />
 
-    <Comments />
-  </main>
-
-  <Footer />
-</div>
+      <ConfirmButton disabled={cart.items.length === 0} />
+    </main>
+  );
+}
 ```
+
+One command. No configuration needed.
+
+---
 
 ## Usage
 
-The extension can be triggered in two ways:
+**Keyboard shortcut**
 
-1. **Keyboard Shortcut**: Press `Ctrl+K Space` (Windows/Linux) or `Cmd+K Space` (Mac) while editing a file
-2. **Command Palette**: Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`) and search for "Code Breathe: Separate Sibling Elements"
+| Platform       | Shortcut        |
+|----------------|-----------------|
+| Windows / Linux | `Ctrl+K Space` |
+| macOS          | `Cmd+K Space`   |
 
-It will:
+**Command Palette**
 
-- Parse your JSX/TSX code
-- Identify sibling elements that need spacing
-- Insert blank lines with proper indentation
-- Preserve existing spacing if elements already have blank lines between them
+Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`) and run:
+
+```
+Code Breathe: Separate Sibling Elements
+```
+
+---
+
+## How It Works
+
+Code Breathe parses your file using a full AST (via Babel) and walks the JSX tree to find adjacent sibling elements. It then inserts a blank line between each pair of siblings that don't already have one, preserving your indentation and leaving everything else untouched.
+
+- Existing blank lines are respected and never duplicated
+- Indentation is matched exactly to the next sibling element
+- Only JSX/TSX elements are affected; text nodes, expressions, and other content are left as-is
+
+---
 
 ## Supported Files
 
-- .tsx
-- .jsx
+- `.jsx`
+- `.tsx`
 
-## Known Issues
+---
 
-- The extension currently processes the entire file. For very large files, this may take a moment.
-- Only formats JSX/TSX elements. Standard HTML files are not yet supported.
+## Known Limitations
+
+- Processes the entire file on each run. On very large files this may take a brief moment.
+- HTML files (`.html`) are not supported, only JSX/TSX.
+
+---
 
 ## Contributing
 
-Found a bug or have a feature request? Please open an issue on the [GitHub repository](https://github.com/codigoisaac/Sibling-Separator).
+Found a bug or have a feature request? Open an issue on the [GitHub repository](https://github.com/codigoisaac/Sibling-Separator).
+
+---
 
 ## License
 
-This extension is licensed under the MIT License.
+MIT
