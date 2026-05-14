@@ -49,10 +49,10 @@ One command. No configuration needed.
 
 **Keyboard shortcut**
 
-| Platform       | Shortcut        |
-|----------------|-----------------|
+| Platform        | Shortcut       |
+| --------------- | -------------- |
 | Windows / Linux | `Ctrl+K Space` |
-| macOS          | `Cmd+K Space`   |
+| macOS           | `Cmd+K Space`  |
 
 **Command Palette**
 
@@ -90,7 +90,7 @@ Code Breath parses your file using a full AST (via Babel) and walks the JSX tree
 
 ## Contributing
 
-Found a bug or have a feature request? Open an issue on the [GitHub repository](https://github.com/codigoisaac/Sibling-Separator).
+Found a bug or have a feature request? Open an issue on the [GitHub repository](https://github.com/codigoisaac/code-breath).
 
 ---
 
