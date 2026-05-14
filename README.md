@@ -1,8 +1,8 @@
-# Code Breathe: Sibling Separator
+# Code Breath: Sibling Separator
 
 **Give your JSX/TSX elements room to breathe.**
 
-Code Breathe automatically inserts blank lines between sibling JSX and TSX elements, making your component trees instantly more readable, without touching anything else in your file.
+Code Breath automatically inserts blank lines between sibling JSX and TSX elements, making your component trees instantly more readable, without touching anything else in your file.
 
 ---
 
@@ -59,14 +59,14 @@ One command. No configuration needed.
 Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`) and run:
 
 ```
-Code Breathe: Separate Sibling Elements
+Code Breath: Separate Sibling Elements
 ```
 
 ---
 
 ## How It Works
 
-Code Breathe parses your file using a full AST (via Babel) and walks the JSX tree to find adjacent sibling elements. It then inserts a blank line between each pair of siblings that don't already have one, preserving your indentation and leaving everything else untouched.
+Code Breath parses your file using a full AST (via Babel) and walks the JSX tree to find adjacent sibling elements. It then inserts a blank line between each pair of siblings that don't already have one, preserving your indentation and leaving everything else untouched.
 
 - Existing blank lines are respected and never duplicated
 - Indentation is matched exactly to the next sibling element

@@ -5,7 +5,7 @@ import MagicString from "magic-string";
 
 export function activate(context: vscode.ExtensionContext) {
   function showVscodeMessage(type: "info" | "error", message: string) {
-    const messageIntro = `Code Breathe:`;
+    const messageIntro = `Code Breath:`;
     const messageBody = `${messageIntro} ${message}`;
 
     switch (type) {
@@ -19,9 +19,7 @@ export function activate(context: vscode.ExtensionContext) {
     }
   }
 
-  const disposable = vscode.commands.registerCommand(
-    "code-breathe.separate-siblings",
-    async () => {
+  const handler = async () => {
       const editor = vscode.window.activeTextEditor;
 
       if (!editor) {
@@ -114,10 +112,14 @@ export function activate(context: vscode.ExtensionContext) {
       await editor.edit((editBuilder) => {
         editBuilder.replace(fullRange, result);
       });
-    },
-  );
+  };
 
-  context.subscriptions.push(disposable);
+  // "code-breathe" is kept as a legacy alias so users with custom keybindings
+  // pointing to the old ID don't silently break after the rename.
+  context.subscriptions.push(
+    vscode.commands.registerCommand("code-breath.separate-siblings", handler),
+    vscode.commands.registerCommand("code-breathe.separate-siblings", handler),
+  );
 }
 
 export function deactivate() {}
